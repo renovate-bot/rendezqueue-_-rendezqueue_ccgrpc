@@ -3,15 +3,15 @@ module(
     version = "0.0.0",
 )
 
-bazel_dep(name = "aspect_bazel_lib", version = "2.4.1")
-bazel_dep(name = "aspect_rules_js", version = "1.37.1")
-bazel_dep(name = "bazel_skylib", version = "1.5.0")
+bazel_dep(name = "aspect_bazel_lib", version = "2.7.3")
+bazel_dep(name = "aspect_rules_js", version = "1.42.1")
+bazel_dep(name = "bazel_skylib", version = "1.6.1")
 bazel_dep(name = "rules_license", version = "0.0.8")
-bazel_dep(name = "rules_proto", version = "5.3.0-21.7")
+bazel_dep(name = "rules_proto", version = "6.0.0")
 
 bazel_dep(
     name = "abseil-cpp",
-    version = "20240116.0",
+    version = "20240116.2",
     repo_name = "com_google_absl")
 bazel_dep(
     name = "grpc",
@@ -25,7 +25,7 @@ bazel_dep(
 git_override(
     module_name = "fildesh",
     remote = "https://github.com/fildesh/fildesh.git",
-    commit="f0841991085717aaeca83f09c41cd42ecf4abc34",
+    commit="29ef2da4a4c4aeda9c0af917b95fc2c493d4f96d",
 )
 bazel_dep(
     name = "rules_sxproto",
@@ -34,5 +34,5 @@ bazel_dep(
 git_override(
     module_name = "rules_sxproto",
     remote = "https://github.com/rendezqueue/rules_sxproto.git",
-    commit="92ad548bc4a4f08f5fe33eed92a34dd4b5b9e48b",
+    commit="70827d3da93c4aefaeee3627a9d091a975d1377b",
 )
