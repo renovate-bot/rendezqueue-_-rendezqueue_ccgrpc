@@ -3,9 +3,8 @@ module(
     version = "0.0.0",
 )
 
-bazel_dep(name = "bazel_skylib", version = "1.6.1")
 bazel_dep(name = "rules_license", version = "0.0.8")
-bazel_dep(name = "rules_proto", version = "6.0.0")
+bazel_dep(name = "rules_proto", version = "6.0.0.bcr.1")
 
 bazel_dep(
     name = "abseil-cpp",
@@ -13,7 +12,7 @@ bazel_dep(
     repo_name = "com_google_absl")
 bazel_dep(
     name = "grpc",
-    version = "1.48.1.bcr.3",
+    version = "1.62.1.bcr.1",
     repo_name = "com_github_grpc_grpc")
 
 bazel_dep(
@@ -23,7 +22,7 @@ bazel_dep(
 git_override(
     module_name = "fildesh",
     remote = "https://github.com/fildesh/fildesh.git",
-    commit="29ef2da4a4c4aeda9c0af917b95fc2c493d4f96d",
+    commit="11ff65ed78103bc1b1caefb1deb8fa42110eea08",
 )
 bazel_dep(
     name = "rules_sxproto",
@@ -32,5 +31,5 @@ bazel_dep(
 git_override(
     module_name = "rules_sxproto",
     remote = "https://github.com/rendezqueue/rules_sxproto.git",
-    commit="70827d3da93c4aefaeee3627a9d091a975d1377b",
+    commit="c720229ebe571b470efc6b34fda182308e56c1c8",
 )

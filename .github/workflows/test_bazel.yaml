@@ -23,7 +23,13 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build
-      run: bazel build //...
+      run: >
+        bazel build
+        --disk_cache=~/.cache/bazel
+        //...
 
     - name: Test
-      run: bazel test //...
+      run: >
+        bazel test
+        --disk_cache=~/.cache/bazel
+        //...

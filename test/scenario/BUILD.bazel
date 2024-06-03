@@ -1,27 +1,23 @@
-load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@fildesh//tool/bazel:fildesh_test.bzl", "fildesh_test")
 load("@rules_proto//proto:defs.bzl", "proto_library")
-load("scenario.bzl", "rendezqueue_scenario_test")
-
-bzl_library(
-    name = "scenario_bzl",
-    srcs = ["scenario.bzl"],
-)
+load("@rules_sxproto//sxproto:defs.bzl", "sxproto_data")
 
 proto_library(
     name = "scenario_proto",
+    testonly = 1,
     srcs = ["scenario.proto"],
     deps = ["//proto:rendezqueue_proto"],
-    testonly = 1,
 )
 
 cc_proto_library(
     name = "scenario_cc_proto",
-    deps = [":scenario_proto"],
     testonly = 1,
+    deps = [":scenario_proto"],
 )
 
 cc_binary(
     name = "ccgrpc_expect",
+    testonly = 1,
     srcs = [
         "ccgrpc_expect.cc",
     ],
@@ -29,8 +25,23 @@ cc_binary(
         ":scenario_cc_proto",
         "//src/ccgrpc:rendezqueue_protobuf_impl_cc",
     ],
-    testonly = 1,
 )
 
-rendezqueue_scenario_test(name = "basic")
+sxproto_data(
+    name = "basic_binpb",
+    testonly = 1,
+    src = "basic.sxpb",
+    proto_deps = [":scenario_proto"],
+    proto_message = "rendezqueue.TrySwapScenario",
+)
 
+fildesh_test(
+    name = "basic_ccgrpc_expect_test",
+    srcs = ["//test/scenario:ccgrpc_expect.fildesh"],
+    input_by_option = {
+        "scenario_data": ":basic_binpb",
+    },
+    tool_by_alias = {
+        "expect_test": "//test/scenario:ccgrpc_expect",
+    },
+)
