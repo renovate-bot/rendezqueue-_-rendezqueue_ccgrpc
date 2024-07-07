@@ -1,3 +1,4 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
 
 alias(
     name = "grpc_cc_lib",
@@ -12,11 +13,11 @@ cc_library(
         "swapstore.cc",
         "swapstore.hh",
     ],
+    visibility = ["//test/scenario:__pkg__"],
     deps = [
         "//proto:rendezqueue_cc_proto",
         "@com_google_absl//absl/container:flat_hash_map",
     ],
-    visibility = ["//test/scenario:__pkg__"],
 )
 
 cc_library(
@@ -25,10 +26,10 @@ cc_library(
         "ssl_cred.cc",
         "ssl_cred.hh",
     ],
+    visibility = ["//test/scenario:__pkg__"],
     deps = [
         ":grpc_cc_lib",
     ],
-    visibility = ["//test/scenario:__pkg__"],
 )
 
 cc_binary(
@@ -71,4 +72,3 @@ cc_binary(
         "@com_google_absl//absl/flags:parse",
     ],
 )
-

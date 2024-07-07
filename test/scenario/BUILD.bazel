@@ -1,4 +1,5 @@
 load("@fildesh//tool/bazel:fildesh_test.bzl", "fildesh_test")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_sxproto//sxproto:defs.bzl", "sxproto_data")
 
