@@ -1,4 +1,4 @@
 
-(: scenario_data Filename .self.opt.scenario_data)
+(: scenario_data Filepath .self.opt.scenario_data)
 
 expect_test $(XOF scenario_data)
