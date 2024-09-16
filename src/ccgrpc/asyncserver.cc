@@ -70,8 +70,10 @@ class ServerImpl final {
     void* tag;
     bool ok;
     while (true) {
-      GPR_ASSERT(cq_->Next(&tag, &ok));
-      GPR_ASSERT(ok);
+      if (!cq_->Next(&tag, &ok) || !ok) {
+        std::cerr << "No more RPCs to handle?\n";
+        break;
+      }
       auto& e = *static_cast<std::unique_ptr<TrySwapState>*>(tag);
       if (e->processed) {
         e.reset(nullptr);
